@@ -1,0 +1,102 @@
+plugins {
+    // Why: 1.21.11 is the LAST obfuscated MC version. It requires the
+    // remap-variant plugin. Do NOT change to 'net.fabricmc.loom' or
+    // 'net.fabricmc.fabric-loom' — those are different plugins.
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.mod_id
+}
+
+repositories {
+    maven { url = "https://maven.shedaniel.me/" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+loom {
+    // Why: splitEnvironmentSourceSets() isolates the client classpath so
+    // client-only MC classes (Minecraft, KeyMapping, etc.) resolve correctly.
+    // Without this, src/client/java code cannot compile against MC client classes.
+    splitEnvironmentSourceSets()
+
+    mods {
+        "skin_weathering" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+
+    // Uncomment if/when you add an access widener:
+    // accessWidenerPath = file("src/main/resources/skin_weathering.accesswidener")
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+    // Why: Fabric API for 1.21.11 is compiled against the intermediary mapping
+    // (class names like class_310, class_304). If you use officialMojangMappings()
+    // ALONE, Loom builds a mapping that skips the intermediary layer — the
+    // remapped Fabric API jars still contain class_310, but the compiler sees
+    // Minecraft mapped to Mojang names, so it fails with:
+    //     "class file for net.minecraft.class_310 not found"
+    // The fix is a layered mapping: first lay down intermediary, then overlay
+    // Mojang names. This produces a full 3-column mapping that Loom can use
+    // to correctly remap Fabric API from class_310 -> Minecraft.
+    mappings loom.layered {
+        mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
+        officialMojangMappings()
+    }
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Why: the original mod lists Cloth Config and ModMenu under "suggests",
+    // so they are compile-only here (not required at runtime). modLocalRuntime
+    // puts them in runClient so the config screen can be tested in dev.
+    modCompileOnly "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
+    modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
+    modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}") { transitive = false }
+    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") { transitive = false }
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "loader_version": project.loader_version,
+                "mod_name": project.mod_name,
+                "mod_id": project.mod_id
+    }
+}
+
+def targetJavaVersion = 21
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = targetJavaVersion
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}
