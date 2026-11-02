@@ -52,7 +52,7 @@ public class WeatheringMod implements ModInitializer {
    public static final SimpleParticleType BLOOD_DRIP_PARTICLE = FabricParticleTypes.simple();
 
    public void onInitialize() {
-      LOGGER.info("Adaptive Skin Weathering initialized with Dynamic Settings (26.2).");
+      LOGGER.info("Adaptive Skin Weathering initialized with Dynamic Settings (1.21.11).");
       PayloadTypeRegistry.playS2C().register(WeatheringSyncPayload.TYPE, WeatheringSyncPayload.STREAM_CODEC);
       PayloadTypeRegistry.playS2C().register(RegistrySyncPayload.TYPE, RegistrySyncPayload.STREAM_CODEC);
       Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath("skin_weathering", "blood_drip"), BLOOD_DRIP_PARTICLE);
