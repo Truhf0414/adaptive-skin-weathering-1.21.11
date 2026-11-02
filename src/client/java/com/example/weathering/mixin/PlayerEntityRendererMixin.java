@@ -36,7 +36,7 @@ public class PlayerEntityRendererMixin {
    private void onRenderRightArm(
       PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, Identifier skinTexture, boolean isSlim, CallbackInfo ci
    ) {
-      AvatarRenderer<?> renderer = (AvatarRenderer<?>)this;
+      AvatarRenderer<?> renderer = (AvatarRenderer<?>)(Object)this;
       PlayerModel model = (PlayerModel)renderer.getModel();
       this.renderWeatheringArm(matrices, submitNodeCollector, light, skinTexture, isSlim, model.rightArm, model.rightSleeve, true);
    }
@@ -48,7 +48,7 @@ public class PlayerEntityRendererMixin {
 
    @Inject(method = "renderLeftHand", at = @At("TAIL"))
    private void onRenderLeftArm(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, Identifier skinTexture, boolean isSlim, CallbackInfo ci) {
-      AvatarRenderer<?> renderer = (AvatarRenderer<?>)this;
+      AvatarRenderer<?> renderer = (AvatarRenderer<?>)(Object)this;
       PlayerModel model = (PlayerModel)renderer.getModel();
       this.renderWeatheringArm(matrices, submitNodeCollector, light, skinTexture, isSlim, model.leftArm, model.leftSleeve, false);
    }
@@ -70,7 +70,7 @@ public class PlayerEntityRendererMixin {
          }
 
          if (maxLevel > 0.05F) {
-            AvatarRenderer<?> renderer = (AvatarRenderer<?>)this;
+            AvatarRenderer<?> renderer = (AvatarRenderer<?>)(Object)this;
             PlayerModel model = (PlayerModel)renderer.getModel();
             model.rightSleeve.visible = false;
             model.leftSleeve.visible = false;
@@ -114,8 +114,8 @@ public class PlayerEntityRendererMixin {
             sleeve.zScale = 1.001F;
             int argbColor = (int)(charLevel * 255.0F) << 24 | (int)(r * 255.0F) << 16 | (int)(g * 255.0F) << 8 | (int)(b * 255.0F);
             RenderType rt = RenderTypes.entityTranslucent(selectedChar);
-            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
             arm.xScale = 1.0F;
             arm.yScale = 1.0F;
             arm.zScale = 1.0F;
@@ -140,8 +140,8 @@ public class PlayerEntityRendererMixin {
             sleeve.zScale = 1.002F;
             int argbColor = (int)(alpha * 255.0F) << 24 | (int)(r * 255.0F) << 16 | (int)(g * 255.0F) << 8 | (int)(b * 255.0F);
             RenderType rt = RenderTypes.entityTranslucent(selectedWet);
-            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
             arm.xScale = 1.0F;
             arm.yScale = 1.0F;
             arm.zScale = 1.0F;
@@ -166,8 +166,8 @@ public class PlayerEntityRendererMixin {
             sleeve.zScale = 1.003F;
             int argbColor = (int)(alpha * 255.0F) << 24 | (int)(r * 255.0F) << 16 | (int)(g * 255.0F) << 8 | (int)(b * 255.0F);
             RenderType rt = RenderTypes.entityTranslucent(selectedFrost);
-            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
             arm.xScale = 1.0F;
             arm.yScale = 1.0F;
             arm.zScale = 1.0F;
@@ -227,8 +227,8 @@ public class PlayerEntityRendererMixin {
             sleeve.zScale = 1.005F;
             int argbColor = (int)(bloodLevel * 255.0F) << 24 | (int)(bR * 255.0F) << 16 | (int)(bG * 255.0F) << 8 | (int)(bB * 255.0F);
             RenderType rt = RenderTypes.entityTranslucent(selectedBlood);
-            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
             arm.xScale = 1.0F;
             arm.yScale = 1.0F;
             arm.zScale = 1.0F;
@@ -284,8 +284,8 @@ public class PlayerEntityRendererMixin {
                sleeve.yScale = sc;
                sleeve.zScale = sc;
                int argbColor = (int)(level * 255.0F) << 24 | (int)(r * 255.0F) << 16 | (int)(g * 255.0F) << 8 | (int)(b * 255.0F);
-               submitNodeCollector.submitModelPart(arm, matrices, layer, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-               submitNodeCollector.submitModelPart(sleeve, matrices, layer, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+               submitNodeCollector.submitModelPart(arm, matrices, layer, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+               submitNodeCollector.submitModelPart(sleeve, matrices, layer, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
                arm.xScale = 1.0F;
                arm.yScale = 1.0F;
                arm.zScale = 1.0F;
@@ -369,8 +369,8 @@ public class PlayerEntityRendererMixin {
                   Identifier stageTex = group.getStage(i + 1);
                   int argbColor = (int)(stageAlpha * 255.0F) << 24 | (int)(vr * 255.0F) << 16 | (int)(vg * 255.0F) << 8 | (int)(vb * 255.0F);
                   RenderType rt = RenderTypes.entityTranslucent(stageTex);
-                  submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-                  submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+                  submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+                  submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
                }
             }
          } else if (!WeatheringFeatureRenderer.DIRT_MASKS.isEmpty()) {
@@ -378,8 +378,8 @@ public class PlayerEntityRendererMixin {
             Identifier selectedDirt = WeatheringFeatureRenderer.DIRT_MASKS.get(dirtIndex);
             int argbColor = (int)(layerLevel * 255.0F) << 24 | (int)(vr * 255.0F) << 16 | (int)(vg * 255.0F) << 8 | (int)(vb * 255.0F);
             RenderType rt = RenderTypes.entityTranslucent(selectedDirt);
-            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+            submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+            submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
          }
 
          arm.xScale = 1.0F;
@@ -461,8 +461,8 @@ public class PlayerEntityRendererMixin {
                Identifier stageTex = group.getStage(i + 1);
                int argbColor = (int)(stageAlpha * 255.0F) << 24 | (int)(vr * 255.0F) << 16 | (int)(vg * 255.0F) << 8 | (int)(vb * 255.0F);
                RenderType rt = RenderTypes.entityTranslucent(stageTex);
-               submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-               submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+               submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+               submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
             }
          }
       } else if (!WeatheringFeatureRenderer.DIRT_MASKS.isEmpty()) {
@@ -470,8 +470,8 @@ public class PlayerEntityRendererMixin {
          Identifier selectedDirt = WeatheringFeatureRenderer.DIRT_MASKS.get(dirtIndex);
          int argbColor = (int)(totalLevel * 255.0F) << 24 | (int)(vr * 255.0F) << 16 | (int)(vg * 255.0F) << 8 | (int)(vb * 255.0F);
          RenderType rt = RenderTypes.entityTranslucent(selectedDirt);
-         submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
-         submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null, 0);
+         submitNodeCollector.submitModelPart(arm, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
+         submitNodeCollector.submitModelPart(sleeve, matrices, rt, light, OverlayTexture.NO_OVERLAY, null, argbColor, null);
       }
 
       arm.xScale = 1.0F;

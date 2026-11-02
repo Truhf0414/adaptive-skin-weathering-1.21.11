@@ -432,7 +432,7 @@ public class WeatheringFeatureRenderer extends RenderLayer<AvatarRenderState, Pl
                dynamicTemp = baseTemp - (pos.getY() - 64) / 600.0F;
             }
 
-            if (world.getDefaultClockTime() % 24000L >= 13000L) {
+            if (world.getDayTime() % 24000L >= 13000L) {
                dynamicTemp -= 0.45F;
             }
 

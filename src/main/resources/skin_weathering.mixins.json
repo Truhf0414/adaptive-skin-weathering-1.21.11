@@ -1,16 +1,11 @@
 {
   "required": true,
   "package": "com.example.weathering.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "plugin": "com.example.weathering.mixin.WeatheringMixinConfigPlugin",
   "mixins": [
     "CreateSplashingTypeMixin",
     "LivingEntityMixin"
-  ],
-  "client": [
-    "PlayerEntityRendererMixin",
-    "BipedEntityModelMixin",
-    "LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -55,7 +55,7 @@ public class BipedEntityModelMixin {
                float shakeX = (float)Math.sin(animationProgress * speed) * 0.07F * intensity;
                float shakeZ = (float)Math.cos(animationProgress * speed * 0.87F) * 0.05F * intensity;
                float shakeY = (float)Math.sin(animationProgress * speed * 1.13F) * 0.035F * intensity;
-               PlayerModel model = (PlayerModel)this;
+               PlayerModel model = (PlayerModel)(Object)this;
                model.head.zRot = shakeX;
                model.head.xRot += shakeZ;
                model.hat.zRot = shakeX;

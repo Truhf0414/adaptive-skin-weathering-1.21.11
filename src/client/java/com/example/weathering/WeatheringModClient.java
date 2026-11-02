@@ -18,8 +18,8 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.EndTic
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents.Disconnect;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -30,7 +30,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -50,7 +50,7 @@ public class WeatheringModClient implements ClientModInitializer {
             WeatheringFeatureRenderer.loadMasks(manager);
          }
       });
-      ParticleProviderRegistry.getInstance().register(WeatheringMod.BLOOD_DRIP_PARTICLE, BloodDripParticle.Factory::new);
+      ParticleFactoryRegistry.getInstance().register(WeatheringMod.BLOOD_DRIP_PARTICLE, BloodDripParticle.Factory::new);
       ClientTickEvents.END_CLIENT_TICK.register((EndTick)client -> {
          if (client.level != null) {
             WeatheringConfig config = WeatheringConfig.get();
@@ -293,9 +293,9 @@ public class WeatheringModClient implements ClientModInitializer {
             });
          }
       );
-      LivingEntityRenderLayerRegistrationCallback.EVENT
-         .register((LivingEntityRenderLayerRegistrationCallback)(entityType, entityRenderer, registrationHelper, context) -> {
-            if (entityType == EntityTypes.PLAYER) {
+      LivingEntityFeatureRendererRegistrationCallback.EVENT
+         .register((LivingEntityFeatureRendererRegistrationCallback)(entityType, entityRenderer, registrationHelper, context) -> {
+            if (entityType == EntityType.PLAYER) {
                registrationHelper.register(new WeatheringFeatureRenderer((AvatarRenderer)entityRenderer));
             }
          });

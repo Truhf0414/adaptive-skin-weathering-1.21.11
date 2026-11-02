@@ -53,8 +53,8 @@ public class WeatheringMod implements ModInitializer {
 
    public void onInitialize() {
       LOGGER.info("Adaptive Skin Weathering initialized with Dynamic Settings (26.2).");
-      PayloadTypeRegistry.clientboundPlay().register(WeatheringSyncPayload.TYPE, WeatheringSyncPayload.STREAM_CODEC);
-      PayloadTypeRegistry.clientboundPlay().register(RegistrySyncPayload.TYPE, RegistrySyncPayload.STREAM_CODEC);
+      PayloadTypeRegistry.playS2C().register(WeatheringSyncPayload.TYPE, WeatheringSyncPayload.STREAM_CODEC);
+      PayloadTypeRegistry.playS2C().register(RegistrySyncPayload.TYPE, RegistrySyncPayload.STREAM_CODEC);
       Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath("skin_weathering", "blood_drip"), BLOOD_DRIP_PARTICLE);
       WeatheringServerTicker.register();
       ServerPlayerEvents.AFTER_RESPAWN.register((AfterRespawn)(oldPlayer, newPlayer, alive) -> {

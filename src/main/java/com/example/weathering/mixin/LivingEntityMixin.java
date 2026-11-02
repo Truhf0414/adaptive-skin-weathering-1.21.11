@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LivingEntityMixin {
    @Inject(method = "checkFallDamage", at = @At("HEAD"))
    private void onLivingEntityFall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition, CallbackInfo ci) {
-      LivingEntity entity = (LivingEntity)this;
+      LivingEntity entity = (LivingEntity)(Object)this;
       if (!entity.level().isClientSide()) {
          if (onGround && entity.fallDistance > 3.0) {
             UUID uuid = entity.getUUID();
