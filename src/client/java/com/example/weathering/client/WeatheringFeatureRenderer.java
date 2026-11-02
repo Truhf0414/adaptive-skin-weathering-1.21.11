@@ -717,7 +717,7 @@ public class WeatheringFeatureRenderer extends RenderLayer<AvatarRenderState, Pl
    ) {
       buffer.addVertex(entry.pose(), x, y, z)
          .setColor(r, g, b, alpha)
-         .setUv(0.0F, 0.0F)
+         .setUv(0.5F, 0.5F)
          .setOverlay(OverlayTexture.NO_OVERLAY)
          .setLight(light)
          .setNormal(entry, nx, ny, nz);
