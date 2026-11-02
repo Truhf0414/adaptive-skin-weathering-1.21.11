@@ -3,6 +3,15 @@
   "id": "${mod_id}",
   "name": "${mod_name}",
   "version": "${version}",
+  "description": "Unofficial Fabric 1.21.11 port of Adaptive Skin Weathering: dirt, sand, stone dust, snow and blood build up on player skins based on movement, surface, damage and biome.",
+  "authors": [
+    "Blagoslav",
+    "Launt1m"
+  ],
+  "contributors": [
+    "Truhf0414 (1.21.11 port)"
+  ],
+  "license": "LGPL-3.0-or-later",
   "environment": "*",
   "entrypoints": {
     "main": [

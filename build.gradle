@@ -96,7 +96,13 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-    from("LICENSE") {
+    // Why: LGPL-3.0 requires shipping the license text; LGPL incorporates the
+    // GPL, so both files go in. One from() per file — a single from(a, b) {}
+    // with a trailing closure is ambiguous in Groovy.
+    from("COPYING") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+    from("COPYING.LESSER") {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
