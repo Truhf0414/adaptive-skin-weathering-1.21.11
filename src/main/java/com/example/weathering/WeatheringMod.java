@@ -172,7 +172,7 @@ public class WeatheringMod implements ModInitializer {
                                                 WeatheringNetworking.syncToClients(player);
                                                 ((CommandSourceStack)context.getSource())
                                                    .sendSuccess(
-                                                      () -> Component.literal("Вы полностью покрылись грязью! (Выбран сид #" + randomDirtIndex + ")"), false
+                                                      () -> Component.translatable("commands.skin_weathering.dirt", randomDirtIndex), false
                                                    );
                                                 return 1;
                                              }
@@ -193,7 +193,7 @@ public class WeatheringMod implements ModInitializer {
                                              WeatheringDataManager.setBloodMaskIndex(uuid, randomBloodIndex);
                                              WeatheringNetworking.syncToClients(player);
                                              ((CommandSourceStack)context.getSource())
-                                                .sendSuccess(() -> Component.literal("Вы покрылись кровью! (Выбран сид #" + randomBloodIndex + ")"), false);
+                                                .sendSuccess(() -> Component.translatable("commands.skin_weathering.blood", randomBloodIndex), false);
                                              return 1;
                                           }
                                        }
@@ -211,7 +211,7 @@ public class WeatheringMod implements ModInitializer {
                                  WeatheringDataManager.setWetMaskIndex(uuid, 0);
                                  WeatheringDataManager.setCharMaskIndex(uuid, 0);
                                  WeatheringNetworking.syncToClients(player);
-                                 ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.literal("Ваш персонаж очищен!"), false);
+                                 ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.translatable("commands.skin_weathering.clear"), false);
                                  return 1;
                               }
                            })))
@@ -224,7 +224,7 @@ public class WeatheringMod implements ModInitializer {
                                     UUID uuid = player.getUUID();
                                     WeatheringDataManager.setShakeDisabled(uuid, false);
                                     WeatheringNetworking.syncToClients(player);
-                                    ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.literal("Тряска включена!"), false);
+                                    ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.translatable("commands.skin_weathering.shake.enabled"), false);
                                     return 1;
                                  }
                               }))).then(Commands.literal("disable").executes(context -> {
@@ -235,7 +235,7 @@ public class WeatheringMod implements ModInitializer {
                                     UUID uuid = player.getUUID();
                                     WeatheringDataManager.setShakeDisabled(uuid, true);
                                     WeatheringNetworking.syncToClients(player);
-                                    ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.literal("Тряска отключена!"), false);
+                                    ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.translatable("commands.skin_weathering.shake.disabled"), false);
                                     return 1;
                                  }
                               })))
@@ -253,11 +253,11 @@ public class WeatheringMod implements ModInitializer {
                                              WeatheringNetworking.syncToClients(player);
                                              if (val < 0.0F) {
                                                 ((CommandSourceStack)context.getSource())
-                                                   .sendSuccess(() -> Component.literal("Тряска возвращена в автоматический режим (от холода)"), false);
+                                                   .sendSuccess(() -> Component.translatable("commands.skin_weathering.shake.auto"), false);
                                              } else {
                                                 ((CommandSourceStack)context.getSource())
                                                    .sendSuccess(
-                                                      () -> Component.literal("Интенсивность тряски установлена на " + String.format("%.2f", val)), false
+                                                      () -> Component.translatable("commands.skin_weathering.shake.set", String.format("%.2f", val)), false
                                                    );
                                              }
 
@@ -275,7 +275,7 @@ public class WeatheringMod implements ModInitializer {
                            UUID uuid = player.getUUID();
                            WeatheringDataManager.setBreathingDisabled(uuid, false);
                            WeatheringNetworking.syncToClients(player);
-                           ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.literal("Дыхание включено!"), false);
+                           ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.translatable("commands.skin_weathering.breath.enabled"), false);
                            return 1;
                         }
                      }))).then(Commands.literal("disable").executes(context -> {
@@ -286,7 +286,7 @@ public class WeatheringMod implements ModInitializer {
                            UUID uuid = player.getUUID();
                            WeatheringDataManager.setBreathingDisabled(uuid, true);
                            WeatheringNetworking.syncToClients(player);
-                           ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.literal("Дыхание отключено!"), false);
+                           ((CommandSourceStack)context.getSource()).sendSuccess(() -> Component.translatable("commands.skin_weathering.breath.disabled"), false);
                            return 1;
                         }
                      }))))
@@ -294,7 +294,7 @@ public class WeatheringMod implements ModInitializer {
                      ((LiteralArgumentBuilder)((LiteralArgumentBuilder)Commands.literal("rate").executes(context -> {
                               float currentRate = WeatheringConfig.get().dirtAccumulationRate;
                               ((CommandSourceStack)context.getSource())
-                                 .sendSuccess(() -> Component.literal("Текущий множитель скорости загрязнения: " + currentRate), false);
+                                 .sendSuccess(() -> Component.translatable("commands.skin_weathering.rate.current", currentRate), false);
                               return 1;
                            }))
                            .then(
@@ -304,7 +304,7 @@ public class WeatheringMod implements ModInitializer {
                                        WeatheringConfig.get().dirtAccumulationRate = 2.0F;
                                        WeatheringConfig.get().save();
                                        ((CommandSourceStack)context.getSource())
-                                          .sendSuccess(() -> Component.literal("Множитель скорости загрязнения сброшен на стандартное значение (2.0)"), false);
+                                          .sendSuccess(() -> Component.translatable("commands.skin_weathering.rate.reset"), false);
                                        return 1;
                                     }
                                  )
@@ -314,7 +314,7 @@ public class WeatheringMod implements ModInitializer {
                            WeatheringConfig.get().dirtAccumulationRate = val;
                            WeatheringConfig.get().save();
                            ((CommandSourceStack)context.getSource())
-                              .sendSuccess(() -> Component.literal("Множитель скорости загрязнения установлен на: " + val), false);
+                              .sendSuccess(() -> Component.translatable("commands.skin_weathering.rate.set", val), false);
                            return 1;
                         }))
                   )

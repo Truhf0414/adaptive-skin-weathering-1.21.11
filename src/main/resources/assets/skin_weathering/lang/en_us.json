@@ -68,5 +68,20 @@
   "text.skin_weathering.option.rainBloodWashRate": "Rain Blood Wash Rate",
   "text.skin_weathering.option.enableShaking": "Enable Shivering Animation",
   "text.skin_weathering.option.enableLayering": "Enable Dirt Layering",
-  "text.skin_weathering.option.enableLayering.tooltip": "If enabled, different dirt types will stack on top of each other. If disabled, transitioning to a new surface will change the mask's color/texture instead of layering."
+  "text.skin_weathering.option.enableLayering.tooltip": "If enabled, different dirt types will stack on top of each other. If disabled, transitioning to a new surface will change the mask's color/texture instead of layering.",
+  "text.skin_weathering.option.sequentialDirt": "Sequential Dirt Stages",
+  "text.skin_weathering.option.sequentialDirt.tooltip": "If enabled, dirt spreads gradually through staged masks as it builds up. If disabled, a single randomly chosen mask fades in instead.",
+
+  "commands.skin_weathering.dirt": "You are completely covered in dirt! (Seed #%s selected)",
+  "commands.skin_weathering.blood": "You are covered in blood! (Seed #%s selected)",
+  "commands.skin_weathering.clear": "Your character has been cleaned!",
+  "commands.skin_weathering.shake.enabled": "Shivering enabled!",
+  "commands.skin_weathering.shake.disabled": "Shivering disabled!",
+  "commands.skin_weathering.shake.auto": "Shivering returned to automatic mode (from cold)",
+  "commands.skin_weathering.shake.set": "Shivering intensity set to %s",
+  "commands.skin_weathering.breath.enabled": "Breath steam enabled!",
+  "commands.skin_weathering.breath.disabled": "Breath steam disabled!",
+  "commands.skin_weathering.rate.current": "Current dirt accumulation multiplier: %s",
+  "commands.skin_weathering.rate.reset": "Dirt accumulation multiplier reset to default (2.0)",
+  "commands.skin_weathering.rate.set": "Dirt accumulation multiplier set to: %s"
 }

@@ -68,5 +68,20 @@
   "text.skin_weathering.option.rainBloodWashRate": "Смывание крови дождём",
   "text.skin_weathering.option.enableShaking": "Дрожь от холода",
   "text.skin_weathering.option.enableLayering": "Наслаивание грязи",
-  "text.skin_weathering.option.enableLayering.tooltip": "Если включено, разные виды загрязнения будут накладываться друг на друга. Если выключено, при переходе на другой блок маска просто изменит свой цвет и текстуру."
+  "text.skin_weathering.option.enableLayering.tooltip": "Если включено, разные виды загрязнения будут накладываться друг на друга. Если выключено, при переходе на другой блок маска просто изменит свой цвет и текстуру.",
+  "text.skin_weathering.option.sequentialDirt": "Поэтапное загрязнение",
+  "text.skin_weathering.option.sequentialDirt.tooltip": "Если включено, грязь постепенно распространяется по стадиям маски по мере накопления. Если выключено, вместо этого проявляется одна случайная маска.",
+
+  "commands.skin_weathering.dirt": "Вы полностью покрылись грязью! (Выбран сид #%s)",
+  "commands.skin_weathering.blood": "Вы покрылись кровью! (Выбран сид #%s)",
+  "commands.skin_weathering.clear": "Ваш персонаж очищен!",
+  "commands.skin_weathering.shake.enabled": "Тряска включена!",
+  "commands.skin_weathering.shake.disabled": "Тряска отключена!",
+  "commands.skin_weathering.shake.auto": "Тряска возвращена в автоматический режим (от холода)",
+  "commands.skin_weathering.shake.set": "Интенсивность тряски установлена на %s",
+  "commands.skin_weathering.breath.enabled": "Дыхание включено!",
+  "commands.skin_weathering.breath.disabled": "Дыхание отключено!",
+  "commands.skin_weathering.rate.current": "Текущий множитель скорости загрязнения: %s",
+  "commands.skin_weathering.rate.reset": "Множитель скорости загрязнения сброшен на стандартное значение (2.0)",
+  "commands.skin_weathering.rate.set": "Множитель скорости загрязнения установлен на: %s"
 }
