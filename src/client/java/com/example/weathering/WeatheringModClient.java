@@ -60,7 +60,7 @@ public class WeatheringModClient implements ClientModInitializer {
                   UUID uuid = player.getUUID();
                   boolean isLocalPlayer = client.player != null && client.player.getUUID().equals(uuid);
                   boolean isFirstPerson = client.options != null && client.options.getCameraType().isFirstPerson();
-                  boolean shouldHideParticles = isLocalPlayer && isFirstPerson && !config.showFirstPersonParticles;
+                  boolean shouldHideParticles = isLocalPlayer && isFirstPerson && !config.showFirstPersonParticles || player.isInvisible();
                   if (!shouldHideParticles) {
                      float wetness = WeatheringDataManager.getWetness(uuid);
                      float dirt = WeatheringDataManager.getDirt(uuid);
