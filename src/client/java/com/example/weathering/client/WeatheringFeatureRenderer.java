@@ -416,6 +416,11 @@ public class WeatheringFeatureRenderer extends RenderLayer<AvatarRenderState, Pl
    }
 
    public void submit(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, AvatarRenderState state, float yRot, float xRot) {
+      // Vanilla skips the body for invisible players but still calls every layer; the overlay is part of the skin, so skip it too.
+      if (state.isInvisible) {
+         return;
+      }
+
       Minecraft client = Minecraft.getInstance();
       if (client.level != null) {
          Entity entity = client.level.getEntity(state.id);
