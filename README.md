@@ -36,9 +36,10 @@ For multiplayer, install it on **both the server and every client**: the server 
 
 ## Changes from upstream
 
-The upstream source isn't public, so this port is based on the decompiled `1.2.1-26.2` release. Gameplay is unchanged. What differs:
+The upstream source isn't public, so this port is based on the decompiled `1.2.1-26.2` release. What differs:
 
 - Ported to the 1.21.11 Mojang-mapped API and Fabric API names (Loom remap, Java 21)
+- **Fix:** invisible players no longer show the weathering overlay floating in mid-air, and no longer drip water/dirt/blood/snow particles that give away their position (both happened upstream too)
 - `/weathering` command replies were hardcoded Russian; they are now translatable (`en_us`, `ru_ru`, `zh_tw`)
 - Added a Traditional Chinese (`zh_tw`) translation
 - Added two lang keys missing upstream (`sequentialDirt` option and its tooltip)
@@ -103,9 +104,10 @@ Blagoslav 的 *[ASW] Adaptive Skin Weathering* 的非官方 Fabric **1.21.11** �
 
 ## 與上游的差異
 
-上游的原始碼沒有公開，所以這個移植版是以反編譯的 `1.2.1-26.2` 版本為基礎。玩法沒有任何改變，不同的地方是：
+上游的原始碼沒有公開，所以這個移植版是以反編譯的 `1.2.1-26.2` 版本為基礎。不同的地方是：
 
 - 移植到 1.21.11 的 Mojang 名稱 API 和 Fabric API 名稱（Loom remap、Java 21）
+- **修正**：隱形的玩家不會再有髒污外層浮在半空中，也不會再滴出水、泥、血、冰晶粒子暴露位置（上游也有這兩個問題）
 - `/weathering` 指令的回覆原本是寫死的俄文，現在可以翻譯（`en_us`、`ru_ru`、`zh_tw`）
 - 新增繁體中文（`zh_tw`）翻譯
 - 補上上游缺少的兩個翻譯 key（`sequentialDirt` 選項和它的提示文字）
